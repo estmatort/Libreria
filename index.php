@@ -27,7 +27,7 @@ and open the template in the editor.
 				</div>
 				<div class="group">
 					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span>No cerrar Sesión</label>
+					<label for="check"><span class="icon"></span> No cerrar Sesión</label>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="Iniciar">
@@ -37,7 +37,6 @@ and open the template in the editor.
 					<a href="#forgot">Olvidaste la contraseña?</a>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>
