@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <div class="login-wrap">
 	<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Inicar Sesion</label>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Iniciar Sesion</label>
 		
 		<div class="login-form">
 			<div class="">
@@ -27,7 +27,7 @@ and open the template in the editor.
 				</div>
 				<div class="group">
 					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span>No cerrar Sesión</label>
+					<label for="check"><span class="icon"></span> No cerrar Sesión</label>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="Iniciar">
