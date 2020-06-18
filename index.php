@@ -13,6 +13,7 @@ and open the template in the editor.
     <body>
         <div class="login-wrap">
 	<div class="login-html">
+            <form></form>
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Iniciar Sesion</label>
 		
 		<div class="login-form">
