@@ -244,42 +244,42 @@ IDROL ASC
 alter table TBLEDITORIAL_TBLLIBRO
    add constraint FK_TBLEDITO_TBLEDITOR_TBLLIBRO foreign key (IDLIBRO)
       references TBLLIBRO (IDLIBRO)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
 alter table TBLEDITORIAL_TBLLIBRO
    add constraint FK_TBLEDITO_TBLEDITOR_TBLEDITO foreign key (IDEDITORIAL)
       references TBLEDITORIAL (IDEDITORIAL)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
 alter table TBLLIBRO_TBLAUTOR
    add constraint FK_TBLLIBRO_TBLLIBRO__TBLAUTOR foreign key (IDAUTOR)
       references TBLAUTOR (IDAUTOR)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
 alter table TBLLIBRO_TBLAUTOR
    add constraint FK_TBLLIBRO_TBLLIBRO__TBLLIBRO_A foreign key (IDLIBRO)
       references TBLLIBRO (IDLIBRO)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
 alter table TBLLIBRO_TBLGENERO
    add constraint FK_TBLLIBRO_TBLLIBRO__TBLGENER foreign key (IDGENERO)
       references TBLGENERO (IDGENERO)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
 alter table TBLLIBRO_TBLGENERO
    add constraint FK_TBLLIBRO_TBLLIBRO__TBLLIBRO_G foreign key (IDLIBRO)
       references TBLLIBRO (IDLIBRO)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
 alter table TBLUSUARIO
    add constraint FK_TBLUSUAR_TBLUSUARI_TBLROL foreign key (IDROL)
       references TBLROL (IDROL)
-      on update restrict
-      on delete restrict;
+      on update cascade
+      on delete cascade;
 
