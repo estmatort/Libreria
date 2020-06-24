@@ -54,7 +54,7 @@ foreach ($result as $res) {
                                 <a class="dropdown-item" href="#">Editorial</a>
                                 <a class="dropdown-item" href="#">Libros</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Vendedores</a>
                             </div>
                         </li>
                         <li class="nav-item">
