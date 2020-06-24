@@ -18,7 +18,6 @@ if (isset($_POST['login'])) {
         if ($result) {
             if (mysqli_num_rows($result)) {
                 while (mysqli_fetch_array($result, MYSQLI_BOTH)) {
-
                     echo "<script>alert('Bienvenido');location.href='inicio.php';</script>";
                 }
             } else {
