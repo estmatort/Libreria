@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,7 +12,8 @@ if (isset($_POST['login'])) {
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $intentos = $_POST['hidden'];
-
+    //session usuario para llevar valores
+    $_SESSION['usuario']=$user;
     if ($intentos < 3) {
         $query = "SELECT * FROM tblusuario WHERE usuusuario = '" . $user . "'AND passusuario = '" . $pass . "'";
         $result = mysqli_query($conn, $query);
