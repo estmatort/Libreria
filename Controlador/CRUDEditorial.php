@@ -1,6 +1,7 @@
 <?php
 
 class CRUDEditorial {
+    //funcioness 
 
     public function crearEditorial($nombre, $ubicacion, $estado) {
         $conexion = mysqli_connect('localhost', 'root', '', 'bd_libreria');
