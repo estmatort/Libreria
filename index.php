@@ -1,80 +1,66 @@
-<!DOCTYPE html>
 <?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bd_libreria";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-$intentos = 0;
+	include_once 'conexion.php';
 
-if (isset($_POST['login'])) {
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
-    $intentos = $_POST['hidden'];
-    //session usuario para llevar valores
-    $_SESSION['usuario']=$user;
-    if ($intentos < 3) {
-        $query = "SELECT * FROM tblusuario WHERE usuusuario = '" . $user . "'AND passusuario = '" . $pass . "'";
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            if (mysqli_num_rows($result)) {
-                while (mysqli_fetch_array($result, MYSQLI_BOTH)) {
-                    echo "<script>alert('Bienvenido');location.href='inicio.php';</script>";
-                }
-            } else {
-                $intentos ++;
-                echo '<script type="text/javascript">alert("ACCESO DENEGADO. NUMERO DE INTENTOS "' . $intentos . '");</script>';
-            }
-        }
+	$sentencia_select=$con->prepare('SELECT *FROM clientes ORDER BY id DESC');
+	$sentencia_select->execute();
+	$resultado=$sentencia_select->fetchAll();
+
+	// metodo buscar
+	if(isset($_POST['btn_buscar'])){
+		$buscar_text=$_POST['buscar'];
+		$select_buscar=$con->prepare('SELECT *FROM clientes WHERE nombre LIKE :campo OR apellidos LIKE :campo;');
+
+		$select_buscar->execute(array(
+			':campo' =>"%".$buscar_text."%"
+		));
+
+		$resultado=$select_buscar->fetchAll();
+
     }
 
-    if ($intentos == 3) {
-        echo '<script type="text/javascript">alert("NUMERO DE INTENTOS PERMITIDOS EXCEDIDOS");</script>';
-    }
-}
+
 ?>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Registrarse</title>
-        <link rel="stylesheet" type="text/css" href="css/estilos.css">
-    </head>
-    <body>
-        <div class="login-wrap">
-            <div class="login-html" >
-                <form method="POST" action="">
-                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Iniciar Sesion</label>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Inicio</title>
+	<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+	<div class="contenedor">
+		<h2>CRUD EN PHP CON MYSQL</h2>
+		<div class="barra__buscador">
+			<form action="" class="formulario" method="post">
+				<input type="text" name="buscar" placeholder="buscar nombre o apellidos" 
+				value="<?php if(isset($buscar_text)) echo $buscar_text; ?>" class="input__text">
+				<input type="submit" class="btn" name="btn_buscar" value="Buscar">
+				<a href="insert.php" class="btn btn__nuevo">Nuevo</a>
+			</form>
+		</div>
+		<table>
+			<tr class="head">
+				<td>idUsuario</td>
+				<td>descripcionGenero</td>
+				<td>estadoGenero</td>
+				<td>Estado</td>
+				<td>usuario</td>
+				<td colspan="2">Acción</td>
+			</tr>
+			<?php foreach($resultado as $fila):?>
+				<tr >
+					<td><?php echo $fila['idUsuario']; ?></td>
+					<td><?php echo $fila['descripcionGenero']; ?></td>
+					<td><?php echo $fila['estadoGenero']; ?></td>
+					<td><?php echo $fila['Estado']; ?></td>
+					<td><?php echo $fila['usuario']; ?></td>
+					<td><a href="update.php?id=<?php echo $fila['id']; ?>"  class="btn__update" >Editar</a></td>
+					<td><a href="delete.php?id=<?php echo $fila['id']; ?>" class="btn__delete">Eliminar</a></td>
+				</tr>
+			<?php endforeach ?>
 
-                    <div class="login-form" id="login">
-                        <div class="">
-                            <?php
-                            echo "<input type='hidden' name='hidden' value='" . $intentos . "'>";
-                            ?>
-                            <div class="group">
-                                <label for="user" class="label">Usuario</label>
-                                <input id="user" name="user" <?php if ($intentos == 3) { ?> disabled="disabled" <?php } ?> type="text" class="input">
-                            </div>
-                            <div class="group">
-                                <label for="pass" class="label">Contraseña</label>
-                                <input id="pass" name="pass" <?php if ($intentos == 3) { ?> disabled="disabled" <?php } ?> type="password" class="input" data-type="password">
-                            </div>
-                            <div class="group">
-                                <input id="check" type="checkbox" class="check" checked>
-                                <label for="check"><span class="icon"></span> No cerrar Sesión</label>
-                            </div>
-                            <div class="group">
-                                <input class="button button-block" type="submit" name="login" value="Ingresar" <?php if ($intentos == 3) { ?> disabled="disabled" <?php } ?>  placeholder="Login">
-                            </div>
-                            <div class="hr"></div>
-                            <div class="foot-lnk">
-                                <a href="#forgot">Olvidaste la contraseña?</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </body>
+		</table>
+	</div>
+</body>
 </html>
